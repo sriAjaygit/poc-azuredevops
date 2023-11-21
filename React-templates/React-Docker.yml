@@ -1,0 +1,7 @@
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker@react'
+    repository: 'neverloosedocker/react'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'

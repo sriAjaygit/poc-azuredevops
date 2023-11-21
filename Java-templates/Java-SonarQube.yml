@@ -1,0 +1,18 @@
+steps:
+
+- task: SonarQubePrepare@5
+
+  inputs:
+    SonarQube: 'abcd'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'abcdef'
+    cliProjectName: ${{parameters.sonarprojectname}}
+    cliSources: '.'
+    extraProperties: |
+      sonar.projectKey=abc_abc_AYs4f5QpBdjkmO9r6tBN
+      sonar.java.binaries=.
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
+    

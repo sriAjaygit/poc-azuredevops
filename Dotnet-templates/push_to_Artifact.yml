@@ -1,0 +1,31 @@
+steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+        currentVersion="$(artifactsuffix)"
+      
+        # Split the version into major, minor, and patch parts
+        IFS='.' read -ra versionParts <<< "$currentVersion"    #This line sets the Internal Field Separator (IFS) to a period (dot).{IFS-special Variable}
+        major=${versionParts[0]}                               # it's reading the contents of the currentVersion variable and splitting it into an array named versionParts
+        minor=${versionParts[1]}
+        patch=${versionParts[2]}
+      
+        # Increment the patch version
+        ((patch++))
+      
+        # Construct the new version
+        newVersion="$major.$minor.$patch"
+        az extension add --name azure-devops
+
+        echo "$(azurepat@react)" | az devops login --organization https://dev.azure.com/sriajay/
+        #az pipelines variable update --name "artifactsuffix" --value "$newVersion" --org https://dev.azure.com/sriajay/ --project dotnet --pipeline-name dotnetpipeline --allow-override true
+        az pipelines variable update --name "artifactsuffix" --value "$newVersion" --org https://dev.azure.com/sriajay/ --project ${{parameters.ProjectName}} --pipeline-name ${{parameters.PipelineName}} --allow-override true
+        az artifacts universal publish \
+            --organization https://dev.azure.com/sriajay/ \
+            --feed sriajay \
+            --name "${{parameters.ProjectName}}-package-$newVersion" \
+            --version "0.0.4" \
+            --description "Welcome to Universal Packages" \
+            --path "$(Build.ArtifactStagingDirectory)"
+            

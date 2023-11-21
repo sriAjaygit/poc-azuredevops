@@ -1,0 +1,6 @@
+steps:
+- task: dependency-check-build-task@6
+  inputs:
+    projectName: 'owasp'
+    scanPath: '**/*.csproj'
+    format: 'HTML'

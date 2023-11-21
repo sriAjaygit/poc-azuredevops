@@ -1,0 +1,8 @@
+# Docker task 
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'docker for dotnet'
+    repository: 'neverloosedocker/mvp-dotnet'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'

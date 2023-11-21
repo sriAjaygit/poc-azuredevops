@@ -1,0 +1,14 @@
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '20.9.0'
+    checkLatest: true
+  displayName: 'Install Node.js'
+
+- script: |
+    npm -v
+    node -v
+    npm install
+    npm run build
+  displayName: 'npm install and build'

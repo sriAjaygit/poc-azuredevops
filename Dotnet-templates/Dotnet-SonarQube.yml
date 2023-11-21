@@ -1,0 +1,17 @@
+#sonarqube task using the manual
+steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'dot net'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'dot_net_dot_net_AYtsDaKUuj_PIh3HmXAI'
+    cliProjectName: 'dot net project'
+    cliSources: '.'
+
+
+
+
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'

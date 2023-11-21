@@ -1,0 +1,15 @@
+# sonarqube
+steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'sonar-service connection'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'TOKEN-react'
+    cliProjectName: 'react'
+    cliSources: '.'
+
+
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
